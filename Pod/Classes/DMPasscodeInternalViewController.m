@@ -37,9 +37,13 @@
     [super viewDidLoad];
     self.view.backgroundColor = _config.backgroundColor;
     self.navigationController.navigationBar.barTintColor = _config.navigationBarBackgroundColor;
-    UIBarButtonItem* closeItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(close:)];
-    closeItem.tintColor = _config.navigationBarForegroundColor;
-    self.navigationItem.leftBarButtonItem = closeItem;
+    
+    if ([_config allowClose]) {
+        UIBarButtonItem* closeItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(close:)];
+        closeItem.tintColor = _config.navigationBarForegroundColor;
+        self.navigationItem.leftBarButtonItem = closeItem;
+    }
+
     self.navigationController.navigationBar.barStyle = (UIBarStyle)_config.statusBarStyle;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName :_config.navigationBarFont,
                                                                     NSForegroundColorAttributeName: _config.navigationBarTitleColor};

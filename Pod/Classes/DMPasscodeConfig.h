@@ -91,4 +91,8 @@
  */
 @property (nonatomic, strong) UIColor * navigationBarTitleColor;
 
+@property (nonatomic, assign) BOOL allowClose;
+
+@property (nonatomic, assign) BOOL useTouchID;
+
 @end
