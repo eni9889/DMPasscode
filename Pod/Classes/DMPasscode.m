@@ -39,7 +39,7 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
 + (void)initialize {
     [super initialize];
     instance = [[DMPasscode alloc] init];
-    bundle = [DMPasscode bundleWithName:@"DMPasscode.bundle"];
+    bundle = [DMPasscode bundleWithName:@"DMPasscode" type:@"bundle"];
 }
 
 - (instancetype)init {
@@ -49,9 +49,8 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
     return self;
 }
 
-+ (NSBundle*)bundleWithName:(NSString*)name {
-    NSString* mainBundlePath = [[NSBundle mainBundle] resourcePath];
-    NSString* frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:name];
++ (NSBundle*)bundleWithName:(NSString*)name type:(NSString *)type {
+    NSString* frameworkBundlePath = [[NSBundle mainBundle] pathForResource:name ofType:type];
     if ([[NSFileManager defaultManager] fileExistsAtPath:frameworkBundlePath]){
         return [NSBundle bundleWithPath:frameworkBundlePath];
     }
